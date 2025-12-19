@@ -1,76 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cybersecurity & IT Support for Small Businesses | Stockholm</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Cybersecurity and IT support for small businesses in Sweden. Fast response, trusted local professionals.">
-  <style>
-    body { font-family: Arial, sans-serif; background:#061220; color:#e5e7eb; margin:0; }
-    .wrap { max-width:900px; margin:auto; padding:40px 20px; }
-    h1, h3, h4 { color:#38bdf8; margin-bottom:10px; }
-    .card { background:#020617; padding:20px; margin:20px 0; border-radius:8px; }
-    input, textarea, button { width:100%; padding:12px; margin-top:10px; border-radius:5px; border:none; }
-    button { background:#38bdf8; font-weight:bold; cursor:pointer; }
-    label { display:block; margin-top:8px; }
-    small { opacity:.6; display:block; margin-top:20px; }
-  </style>
+<meta charset="UTF-8">
+<title>Cybersecurity & IT Support for Small Businesses | Stockholm</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Cybersecurity and IT support for small businesses in Sweden. Fast response, trusted local professionals.">
+<style>
+  body { font-family: Arial, sans-serif; background:#061220; color:#e5e7eb; margin:0; }
+  .wrap { max-width:900px; margin:auto; padding:40px 20px; }
+  h1, h3, h4 { color:#38bdf8; margin-bottom:10px; }
+  .card { background:#020617; padding:20px; margin:20px 0; border-radius:8px; }
+  input, textarea, button { width:100%; padding:12px; margin-top:10px; border-radius:5px; border:none; }
+  button { background:#38bdf8; font-weight:bold; cursor:pointer; }
+  label { display:block; margin-top:8px; }
+  small { opacity:.6; display:block; margin-top:20px; }
+
+  /* Success message styles */
+  #success-message {
+    display:none;
+    color:#38bdf8;
+    font-weight:bold;
+    margin-top:15px;
+    font-size:1.1em;
+    opacity:0;
+    transition: opacity 1s ease-in-out;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  /* Circular countdown ring */
+  .countdown-ring {
+    position: relative;
+    width: 40px;
+    height: 40px;
+  }
+  .countdown-ring svg {
+    transform: rotate(-90deg);
+    width: 40px;
+    height: 40px;
+  }
+  .countdown-ring circle {
+    fill: none;
+    stroke-width: 4;
+    stroke-linecap: round;
+  }
+  .ring-bg { stroke: #333; }
+  .ring-fg { stroke: #38bdf8; stroke-dasharray: 125.6; stroke-dashoffset: 0; transition: stroke-dashoffset 1s linear; }
+  .countdown-number { position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size:0.9em; font-weight:bold; }
+</style>
 </head>
 <body>
 
-  <div class="wrap">
-    <h1>Cybersecurity & IT Support for Small Businesses in Stockholm</h1>
-    <p>
-      We connect Swedish businesses with trusted local IT and cybersecurity professionals
-      for fast support, security incidents, and ongoing IT management.
-    </p>
+<div class="wrap">
+  <h1>Cybersecurity & IT Support for Small Businesses in Stockholm</h1>
+  <p>We connect Swedish businesses with trusted local IT and cybersecurity professionals for fast support, security incidents, and ongoing IT management.</p>
 
-    <div class="card">
-      <h4>Network Services</h4>
-      <ul>
-        <li>VLAN Network Setup</li>
-        <li>Routing & Network Configuration</li>
-        <li>Network and device security</li>
-      </ul>
+  <div class="card">
+    <h4>Network Services</h4>
+    <ul>
+      <li>VLAN Network Setup</li>
+      <li>Routing & Network Configuration</li>
+      <li>Network and device security</li>
+    </ul>
 
-      <h4>IT & Security Services</h4>
-      <ul>
-        <li>Cybersecurity incident response</li>
-        <li>IT troubleshooting & technical support</li>
-        <li>Backup & disaster recovery</li>
-        <li>Small business IT consulting</li>
-      </ul>
+    <h4>IT & Security Services</h4>
+    <ul>
+      <li>Cybersecurity incident response</li>
+      <li>IT troubleshooting & technical support</li>
+      <li>Backup & disaster recovery</li>
+      <li>Small business IT consulting</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Request Support</h3>
+    <p>Fill out the form below and we'll connect you with a local specialist.</p>
+
+    <form id="contact-form" action="https://formspree.io/f/maqwnvnd" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="company" placeholder="Company Name">
+
+      <p>Select the services you need:</p>
+      <label><input type="checkbox" name="services" value="VLAN Network Setup"> VLAN Network Setup</label>
+      <label><input type="checkbox" name="services" value="Routing & Network Configuration"> Routing & Network Configuration</label>
+      <label><input type="checkbox" name="services" value="Network and device security"> Network and device security</label>
+      <label><input type="checkbox" name="services" value="Cybersecurity incident response"> Cybersecurity incident response</label>
+      <label><input type="checkbox" name="services" value="IT troubleshooting & technical support"> IT troubleshooting & technical support</label>
+      <label><input type="checkbox" name="services" value="Backup & disaster recovery"> Backup & disaster recovery</label>
+      <label><input type="checkbox" name="services" value="Small business IT consulting"> Small business IT consulting</label>
+
+      <textarea name="message" placeholder="Describe your issue" rows="5"></textarea>
+
+      <!-- Honeypot field (hidden) -->
+      <div style="display:none;">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website">
+      </div>
+
+      <button type="submit">Request IT Help</button>
+    </form>
+
+    <!-- Inline success message with countdown ring -->
+    <div id="success-message">
+      <span>Thank you! Your message has been sent. Redirecting in </span>
+      <div class="countdown-ring">
+        <svg>
+          <circle class="ring-bg" cx="20" cy="20" r="20"></circle>
+          <circle class="ring-fg" cx="20" cy="20" r="20"></circle>
+        </svg>
+        <span class="countdown-number" id="countdown">3</span>
+      </div>
+      <span>seconds...</span>
     </div>
 
-    <div class="card">
-      <h3>Request Support</h3>
-      <p>Fill out the form below and we'll connect you with a local specialist.</p>
+  </div>
 
-      <form action="https://formspree.io/f/maqwnvnd" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <input type="text" name="company" placeholder="Company Name">
+  <small>
+    This website is a lead-generation and referral service. We do not directly provide IT or cybersecurity services.
+  </small>
 
-        <p>Select the services you need:</p>
-        <label><input type="checkbox" name="services" value="VLAN Network Setup"> VLAN Network Setup</label>
-        <label><input type="checkbox" name="services" value="Routing & Network Configuration"> Routing & Network Configuration</label>
-        <label><input type="checkbox" name="services" value="Network and device security"> Network and device security</label>
-        <label><input type="checkbox" name="services" value="Cybersecurity incident response"> Cybersecurity incident response</label>
-        <label><input type="checkbox" name="services" value="IT troubleshooting & technical support"> IT troubleshooting & technical support</label>
-        <label><input type="checkbox" name="services" value="Backup & disaster recovery"> Backup & disaster recovery</label>
-        <label><input type="checkbox" name="services" value="Small business IT consulting"> Small business IT consulting</label>
+  <footer style="margin-top:20px; text-align:center; opacity:0.6;">
+    &copy; 2025 Cyber IT Leads. All rights reserved.
+  </footer>
+</div>
 
-        <textarea name="message" placeholder="Describe your issue" rows="5"></textarea>
-        <button type="submit">Request IT Help</button>
-      </form>
-    </div>
+<script>
+const form = document.getElementById('contact-form');
+const successMsg = document.getElementById('success-message');
+const countdownNumber = document.getElementById('countdown');
+const ring = document.querySelector('.ring-fg');
+const totalSeconds = 3;
 
-    <small>
-      This website is a lead-generation and referral service. We do not directly provide IT or cybersecurity services.
-    </small>
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  });
 
-    <footer style="margin-top:20px; text-align:center; opacity:0.6;">
-      &copy; 2025 Cyber IT Leads. All rights reserved.
-    </footer>
+  if (response.ok) {
+    // Hide form
+    form.style.display = 'none';
+    // Show success message
+    successMsg.style.display = 'flex';
+    setTimeout(() => successMsg.style.opacity = 1, 50);
+
+    // Animate countdown and ring
+    let secondsLeft = totalSeconds;
+    const radius = 20;
+    const circumference = 2 * Math.PI * radius;
+    ring.style.strokeDasharray = circumference;
+    ring.style.strokeDashoffset = 0;
+
+    const timer = setInterval(() => {
+      secondsLeft--;
+      countdownNumber.textContent = secondsLeft;
+      const offset = circumference * (secondsLeft / totalSeconds);
+      ring.style.strokeDashoffset = offset;
+      if (secondsLeft <= 0) clearInterval(timer);
+    }, 1000);
+
+    // Redirect after countdown
+    setTimeout(() => {
+      window.location.href = 'thank-you.html'; // Replace with your thank-you page URL
+    }, totalSeconds * 1000);
+
+  } else {
+    alert('Oops! There was a problem submitting your form.');
+  }
+});
+</script>
 </body>
 </html>
