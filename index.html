@@ -77,7 +77,15 @@
     <h3>Request Support</h3>
     <p>Fill out the form below and we'll connect you with a local specialist.</p>
 
-    <form id="contact-form" action="https://formspree.io/f/xnjajawz" method="POST">
+    <form action="https://api.staticforms.xyz/submit" method="POST">
+
+      <!-- REQUIRED -->
+      <input type="hidden" name="accessKey" value="sf_ndg5llmj4fg5akignhaf4agm">
+      <input type="hidden" name="subject" value="New IT Lead – Cyber IT Leads">
+      <input type="hidden" name="replyTo" value="@">
+      <input type="hidden" name="redirectTo" value="https://www.cyberitleads.org/thank-you.html">
+
+      <!-- Contact Info-->
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <input type="text" name="company" placeholder="Company Name">
